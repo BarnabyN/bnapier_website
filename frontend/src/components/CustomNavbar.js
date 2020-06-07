@@ -1,14 +1,18 @@
 import React from "react";
 import { Navbar, NavbarBrand, NavLink } from "reactstrap";
 import { Link } from "react-router-dom";
+import logo from "../media/logo.png";
 
 const CustomNavbar = ({}) => (
   <Navbar
+    expand="md"
     sticky="top"
     style={{
-      backgroundColor: "black",
+      backgroundColor: "white",
       padding: "10px",
-      color: "white",
+      borderBottomColor: "black",
+      borderBottomStyle: "solid",
+      borderBottomWidth: "3px",
     }}
   >
     <NavbarBrand
@@ -16,20 +20,29 @@ const CustomNavbar = ({}) => (
       to={"/"}
       style={{
         fontSize: "30px",
-        color: "white",
+        color: "black",
         textDecorationLine: "none",
       }}
     >
-      Barney on the Web
+      Barney Napier
     </NavbarBrand>
     <NavLink
       tag={Link}
       to={"/about"}
       style={{
-        color: "white",
+        color: "black",
       }}
     >
       About
+    </NavLink>
+    <NavLink
+      tag={Link}
+      to={"/newpost"}
+      style={{
+        color: "black",
+      }}
+    >
+      New Post
     </NavLink>
   </Navbar>
 );

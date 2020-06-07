@@ -6,16 +6,16 @@ var bodyParser = require("body-parser");
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-const port = process.env.PORT;
+const port = 5000; //process.env.PORT;
 
 // Imports
-import "./models";
 const { requireAuth, createToken } = require("./authenticate");
 const PostModel = require("./models/PostModel");
 
 // Connect to mongobd
 const mongoose = require("mongoose");
-const dbString = process.env.MONGO_CONNECTION_STRING;
+const dbString =
+  "mongodb+srv://barney:napierb@cluster0-6maj7.mongodb.net/sitedata?retryWrites=true&w=majority"; //process.env.MONGO_CONNECTION_STRING;
 try {
   mongoose.connect(dbString, {
     auto_reconnect: true,
@@ -35,8 +35,14 @@ mongoose.connection.once("open", () =>
 
 app.get("/", (req, res) => res.send(posts));
 
-app.post("/newpost", (req, res) => {
-  // Something to add the posts to DB
+app.post("/newpost", async (req, res) => {
+  const { title, content } = req.body;
+  const newPost = new PostModel({
+    title,
+    content,
+  });
+  await newPost.save();
+  res.send({ success: true });
 });
 
 // Run app
