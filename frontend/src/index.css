@@ -4,6 +4,10 @@ body {
   padding: 10px;
 }
 
+.main {
+  margin: 20px;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

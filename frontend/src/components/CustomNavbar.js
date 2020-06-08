@@ -1,49 +1,39 @@
 import React from "react";
 import { Navbar, NavbarBrand, NavLink } from "reactstrap";
 import { Link } from "react-router-dom";
-import logo from "../media/logo.png";
+import CustomNavlink from "../elements/CustomNavlink";
 
 const CustomNavbar = ({}) => (
-  <Navbar
-    expand="md"
-    sticky="top"
-    style={{
-      backgroundColor: "white",
-      padding: "10px",
-      borderBottomColor: "black",
-      borderBottomStyle: "solid",
-      borderBottomWidth: "3px",
-    }}
-  >
-    <NavbarBrand
-      tag={Link}
-      to={"/"}
+  <div>
+    <h3
       style={{
-        fontSize: "30px",
+        marginLeft: "10px",
+        textDecoration: "none",
         color: "black",
-        textDecorationLine: "none",
       }}
     >
       Barney Napier
-    </NavbarBrand>
-    <NavLink
-      tag={Link}
-      to={"/about"}
+    </h3>
+
+    <Navbar
+      expand="md"
+      sticky="top"
       style={{
-        color: "black",
+        backgroundColor: "white",
+        padding: "10px",
+        paddingTop: "0px",
+        borderBottomColor: "black",
+        borderBottomStyle: "solid",
+        borderBottomWidth: "1px",
       }}
     >
-      About
-    </NavLink>
-    <NavLink
-      tag={Link}
-      to={"/newpost"}
-      style={{
-        color: "black",
-      }}
-    >
-      New Post
-    </NavLink>
-  </Navbar>
+      <CustomNavlink to="/" text="Posts" />
+      <CustomNavlink to="/books" text="Books" />
+      <CustomNavlink to="/problems" text="Problems" />
+      <CustomNavlink to="/projects" text="Projects" />
+      <CustomNavlink to="/about" text="About" />
+      <CustomNavlink to="/newpost" text="New Post" />
+    </Navbar>
+  </div>
 );
 export default CustomNavbar;

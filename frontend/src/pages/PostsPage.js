@@ -1,7 +1,7 @@
 import React from "react";
 import CustomNavbar from "../components/CustomNavbar";
 
-export default function ProblemsPage() {
+export default function PostsPage() {
   return (
     <div>
       <CustomNavbar />

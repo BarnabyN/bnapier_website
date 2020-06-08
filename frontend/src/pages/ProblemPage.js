@@ -1,6 +1,10 @@
 import React from "react";
+import CustomNavbar from "../components/CustomNavbar";
 
 export default function ProblemPage() {
-  // somrthing
-  return <div>Placeholder</div>;
+  return (
+    <div>
+      <CustomNavbar />
+    </div>
+  );
 }

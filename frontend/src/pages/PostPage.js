@@ -1,6 +1,10 @@
 import React from "react";
+import CustomNavbar from "../components/CustomNavbar";
 
 export default function PostPage() {
-  // somrthing
-  return <div>Placeholder</div>;
+  return (
+    <div>
+      <CustomNavbar />
+    </div>
+  );
 }
