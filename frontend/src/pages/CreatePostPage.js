@@ -1,10 +1,9 @@
 import React from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import CustomNavbar from "../components/CustomNavbar";
-import { Button, Form, FormGroup, Input, InputGroup } from "reactstrap";
+import { Button, Form, Input } from "reactstrap";
 import CKEditor from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import NewBlogPostForm from "../components/NewBlogPostForm";
 
 require("dotenv").config();
 
@@ -12,6 +11,7 @@ export default function HomePage() {
   const history = useHistory();
 
   const [title, setTitle] = React.useState("");
+  const [subtitle, setSubtitle] = React.useState("");
   const [content, setContent] = React.useState("");
 
   function handleSubmit(e) {
@@ -24,24 +24,46 @@ export default function HomePage() {
       },
       body: JSON.stringify({
         title,
+        subtitle,
         content,
       }),
     })
       .then((res) => res.json())
       .then((res) => {
         console.log(res);
-      });
+      })
+      .then(history.push("/newpost"));
   }
 
   return (
     <div>
       <CustomNavbar />
       <div class="main">
-        <NewBlogPostForm
-          value={content}
-          onChange={setContent}
-          handleSubmit={handleSubmit}
-        />
+        <Form onSubmit={handleSubmit}>
+          <Input
+            type="title"
+            placeholder="Title"
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <Input
+            type="subtitle"
+            placeholder="Subtitle"
+            onChange={(e) => setSubtitle(e.target.value)}
+          />
+          <div style={{ marginTop: "20px", marginBottom: "20px" }}>
+            <CKEditor
+              editor={ClassicEditor}
+              data={content}
+              onChange={(event, editor) => {
+                const data = editor.getData();
+                setContent(data);
+              }}
+            />
+          </div>
+          <Button variant="contained" type="submit">
+            Post
+          </Button>
+        </Form>
       </div>
     </div>
   );

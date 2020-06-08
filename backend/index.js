@@ -33,13 +33,30 @@ mongoose.connection.once("open", () =>
 // ============== DATABASE CALLS ==============
 // ============================================
 
-app.get("/", (req, res) => res.send(posts));
+app.get("/", async (req, res) => {
+  const posts = await PostModel.find({});
+  res.send({
+    posts,
+  });
+});
+
+app.get("/post/:id", (req, res) => {
+  const matchingPosts = posts.filter((p) => p.id == req.params.id);
+  if (matchingPosts.length > 0) {
+    res.send({ ...matchingPosts[0] });
+  } else {
+    res.send({ error: "Post not found." });
+  }
+});
 
 app.post("/newpost", async (req, res) => {
-  const { title, content } = req.body;
+  const { title, subtitle, content } = req.body;
+  const id = title.replace(" ", "_");
   const newPost = new PostModel({
     title,
+    subtitle,
     content,
+    id,
   });
   await newPost.save();
   res.send({ success: true });

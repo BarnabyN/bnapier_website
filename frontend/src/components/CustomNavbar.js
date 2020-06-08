@@ -1,20 +1,10 @@
 import React from "react";
-import { Navbar, NavbarBrand, NavLink } from "reactstrap";
+import { Navbar, NavbarBrand } from "reactstrap";
 import { Link } from "react-router-dom";
 import CustomNavlink from "../elements/CustomNavlink";
 
 const CustomNavbar = ({}) => (
   <div>
-    <h3
-      style={{
-        marginLeft: "10px",
-        textDecoration: "none",
-        color: "black",
-      }}
-    >
-      Barney Napier
-    </h3>
-
     <Navbar
       expand="md"
       sticky="top"
@@ -27,6 +17,15 @@ const CustomNavbar = ({}) => (
         borderBottomWidth: "1px",
       }}
     >
+      <NavbarBrand
+        tag={Link}
+        to={"/"}
+        style={{ background: "black", color: "white" }}
+      >
+        <div style={{ paddingLeft: "10px", paddingRight: "10px" }}>
+          Barney Napier
+        </div>
+      </NavbarBrand>
       <CustomNavlink to="/" text="Posts" />
       <CustomNavlink to="/books" text="Books" />
       <CustomNavlink to="/problems" text="Problems" />

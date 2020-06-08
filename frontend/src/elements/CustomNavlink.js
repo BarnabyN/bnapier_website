@@ -10,7 +10,7 @@ export default function CustomNavlink(props) {
       window.location.href.lastIndexOf("/")
     );
 
-    if (currentLink == props.to) {
+    if (currentLink === props.to) {
       return true;
     } else {
       return false;
@@ -24,7 +24,6 @@ export default function CustomNavlink(props) {
         to={props.to}
         style={{
           color: "black",
-          borderRadius: "20px",
           borderColor: "black",
           borderStyle: isCurrentLink() ? "solid" : "none",
           borderWidth: "1px",

@@ -30,6 +30,9 @@ export default function App() {
         <Route path="/books">
           <BooksPage />
         </Route>
+        <Route path="/post/:id">
+          <PostPage />
+        </Route>
         <Route path="/posts">
           <PostsPage />
         </Route>
