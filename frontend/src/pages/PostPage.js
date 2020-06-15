@@ -1,16 +1,18 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import CustomNavbar from "../components/CustomNavbar";
+import dbstring from "../constants.js";
 
 export default function PostPage() {
   const { id } = useParams();
   const [post, setPost] = React.useState(null);
 
   React.useEffect(() => {
-    fetch(`http://localhost:5000/post/${id}`)
+    fetch(dbstring + `/post/${id}`)
       .then((res) => res.json())
       .then((p) => {
         setPost(p);
+        console.log(p);
       });
   }, []);
 
@@ -33,13 +35,14 @@ export default function PostPage() {
   }
 
   return (
-    <div>
+    <div className="reactWrapper">
       <CustomNavbar />
-      <div style={{ color: "white", background: "darkslategrey", padding: 40 }}>
-        {post.title}
+      <div className="content">
+        {" "}
+        <h1>{post.title}</h1>
         <br />
+        <div dangerouslySetInnerHTML={{ __html: post.content }} />
       </div>
-      <div dangerouslySetInnerHTML={{ __html: post.content }} />
     </div>
   );
 }

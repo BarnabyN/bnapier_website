@@ -5,10 +5,12 @@ export default function AboutPage() {
   // pass
 
   return (
-    <div>
+    <div className="reactWrapper">
       <CustomNavbar />
-      <div style={{ margin: "20px" }}>
+      <div className="content">
+        <h2>About</h2>
         <h3>About</h3>
+        <h4>About</h4>
         <p>
           I am an Economics graduate that has an interest in both finance and
           computer science. I work as a European Portfolio trader at Morgan

@@ -1,7 +1,9 @@
-NavLink:hover {
-  background: "lightgrey";
-}
-
-NavLink {
-  background-color: black;
+.navlink {
+  border-style: solid;
+  border-width: 1px;
+  display: inline-block;
+  margin-right: 3px;
+  padding: 5px;
+  color: black;
+  font-weight: normal;
 }

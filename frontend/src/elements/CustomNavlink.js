@@ -5,6 +5,7 @@ import "../styles/CustomNavlink.css";
 
 export default function CustomNavlink(props) {
   // This function tells me if the link is shown
+
   function isCurrentLink() {
     const currentLink = window.location.href.substring(
       window.location.href.lastIndexOf("/")
@@ -18,19 +19,14 @@ export default function CustomNavlink(props) {
   }
 
   return (
-    <div>
-      <NavLink
-        tag={Link}
-        to={props.to}
-        style={{
-          color: "black",
-          borderColor: "black",
-          borderStyle: isCurrentLink() ? "solid" : "none",
-          borderWidth: "1px",
-        }}
-      >
-        {props.text}
-      </NavLink>
-    </div>
+    <Link
+      className="navlink link"
+      to={props.to}
+      style={{
+        borderColor: isCurrentLink() ? "black" : "transparent",
+      }}
+    >
+      {props.text}
+    </Link>
   );
 }

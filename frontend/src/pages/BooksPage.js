@@ -4,9 +4,9 @@ import CustomNavbar from "../components/CustomNavbar";
 export default function BookPage() {
   // somrthing
   return (
-    <div>
+    <div className="reactWrapper">
       <CustomNavbar />
-      <div class="main">
+      <div className="content">
         <p>
           I keep my reading list in an Excel file, which is embedded* below:
         </p>

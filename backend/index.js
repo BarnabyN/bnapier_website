@@ -15,7 +15,7 @@ const PostModel = require("./models/PostModel");
 // Connect to mongobd
 const mongoose = require("mongoose");
 const dbString =
-  "mongodb+srv://barney:napierb@cluster0-6maj7.mongodb.net/sitedata?retryWrites=true&w=majority"; //process.env.MONGO_CONNECTION_STRING;
+  "mongodb+srv://barney:napierb@cluster0-6maj7.mongodb.net/sitedata?retryWrites=true&w=majority";
 try {
   mongoose.connect(dbString, {
     auto_reconnect: true,
@@ -33,28 +33,48 @@ mongoose.connection.once("open", () =>
 // ============== DATABASE CALLS ==============
 // ============================================
 
-app.get("/", async (req, res) => {
+app.get("/posts", async (req, res) => {
   const posts = await PostModel.find({});
   res.send({
     posts,
   });
 });
 
-app.get("/post/:id", (req, res) => {
-  const matchingPosts = posts.filter((p) => p.id == req.params.id);
+app.get("/tags", async (req, res) => {
+  const posts = await PostModel.find({});
+  var alltags = [];
+
+  posts.forEach((p) => {
+    p.tags.forEach((t) => {
+      if (alltags.includes(t) === false) {
+        alltags.push(t);
+      }
+    });
+  });
+
+  res.send({
+    alltags,
+  });
+});
+
+app.get("/post/:id", async (req, res) => {
+  const allposts = await PostModel.find({});
+  const matchingPosts = allposts.filter((p) => p.id == req.params.id);
+  console.log(req.params.id);
   if (matchingPosts.length > 0) {
-    res.send({ ...matchingPosts[0] });
+    res.send({ ...matchingPosts[0]._doc });
   } else {
     res.send({ error: "Post not found." });
   }
 });
 
 app.post("/newpost", async (req, res) => {
-  const { title, subtitle, content } = req.body;
+  const { title, subtitle, content, tags } = req.body;
   const id = title.replace(" ", "_");
   const newPost = new PostModel({
     title,
     subtitle,
+    tags,
     content,
     id,
   });

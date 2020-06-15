@@ -1,0 +1,41 @@
+body {
+  margin: 20px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 16px;
+  padding: 10px;
+}
+
+/* Things not in the navbar go in a content wrapper (for margins etc) */
+.content {
+  margin: 20px;
+  margin-top: 65px;
+}
+
+.link {
+  text-decoration: none;
+  color: blue;
+  font-weight: bold;
+}
+
+.link:hover {
+  background-color: black;
+  color: white;
+}
+
+/* Use these headers to style CKeditor the same way as CKeditor */
+
+h2 {
+  text-decoration: underline black;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+h3 {
+  text-decoration: underline;
+  font-weight: normal;
+  font-size: 18px;
+}
+
+h4 {
+  font-weight: bold;
+}
