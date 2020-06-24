@@ -1,24 +1,53 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import CustomNavbar from "../components/CustomNavbar";
-import { Button, Form, Input } from "reactstrap";
 import dbstring from "../constants.js";
+import "../styles/CreatePostPage.css";
 
 // CKEditor imports
 import CKEditor from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-// import CKFinder from "@ckeditor/ckeditor5-ckfinder";
 
 require("dotenv").config();
 
 export default function HomePage() {
   const history = useHistory();
+  const token = localStorage.getItem("token");
 
   const [title, setTitle] = React.useState("");
   const [subtitle, setSubtitle] = React.useState("");
+  const [date, setDate] = React.useState("");
   const [content, setContent] = React.useState("");
   const [tags, setTags] = React.useState([]);
   const [tagslist, setTagslist] = React.useState([]);
+  const [currentAdmin, setCurrentAdmin] = React.useState("");
+
+  React.useEffect(() => {
+    // If logged in: Get username
+    if (token) {
+      fetch(dbstring + "/get-current-admin", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+        .then((res) => res.json())
+        .then((u) => {
+          setCurrentAdmin(u["name"]);
+        });
+    }
+    //  If not logged in, redirect to login page
+    else {
+      history.push("/admin-login");
+    }
+  }, [token]);
+
+  // Render all tags for the author to see
+  React.useEffect(() => {
+    fetch(dbstring + "/tags")
+      .then((res) => res.json())
+      .then((data) => data.alltags)
+      .then((data) => {
+        setTagslist(data);
+      });
+  }, []);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -31,66 +60,73 @@ export default function HomePage() {
       body: JSON.stringify({
         title,
         subtitle,
+        date,
+        currentAdmin,
         tags,
         content,
       }),
     })
       .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
-      })
-      .then(history.push("/newpost"));
+      .then(history.push("/posts"));
   }
-
-  React.useEffect(() => {
-    fetch(dbstring + "/tags")
-      .then((res) => res.json())
-      .then((data) => data.alltags)
-      .then((data) => {
-        setTagslist(data);
-        console.log(data);
-      });
-  }, []);
 
   return (
     <div className="reactWrapper">
       <CustomNavbar />
       <div className="content">
-        <Form onSubmit={handleSubmit}>
-          <Input
+        <form onSubmit={handleSubmit}>
+          <input
+            className="input"
             placeholder="Title"
             onChange={(e) => setTitle(e.target.value)}
           />
-          <Input
+          <br />
+          <input
+            className="input"
             placeholder="Subtitle"
             onChange={(e) => setSubtitle(e.target.value)}
           />
-          <Input
+          <br />
+          <input
+            className="input"
+            type="date"
+            onChange={(e) => setDate(e.target.value)}
+          />
+          <br />
+          <input
+            className="input"
+            placeholder="Author"
+            value={currentAdmin}
+            readOnly="true"
+          />
+          <br />
+          <input
+            className="input"
             placeholder="Tags"
             onChange={(e) => setTags(e.target.value.split(","))}
           />
-          <ul>
-            {tagslist.map((t) => (
-              <li>{t}</li>
-            ))}
-          </ul>
+          <span className="alltags-list">({tagslist.join(", ")})</span>
           <div style={{ marginTop: "20px", marginBottom: "20px" }}>
             <CKEditor
               editor={ClassicEditor}
-              // config={editorConfig}
               data={content}
               onChange={(event, editor) => {
                 const data = editor.getData();
                 setContent(data);
               }}
             />
-            {/* <textarea id="#editor" /> */}
           </div>
-          <Button variant="contained" type="submit">
-            Post
-          </Button>
-        </Form>
-        {content}
+          <button type="submit">Post</button>
+        </form>
+        <button
+          className="logout-button"
+          onClick={() => {
+            localStorage.removeItem("token");
+            history.push("/posts");
+          }}
+        >
+          Log out
+        </button>
       </div>
     </div>
   );

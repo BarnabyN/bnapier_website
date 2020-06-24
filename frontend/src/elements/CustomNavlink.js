@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink } from "reactstrap";
 import { Link } from "react-router-dom";
 import "../styles/CustomNavlink.css";
 
@@ -20,7 +19,7 @@ export default function CustomNavlink(props) {
 
   return (
     <Link
-      className="navlink link"
+      className="navlink"
       to={props.to}
       style={{
         borderColor: isCurrentLink() ? "black" : "transparent",

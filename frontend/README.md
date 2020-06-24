@@ -9,3 +9,7 @@ Programmed in React, the plan is to have a frontend site where the user can view
 - Images
 - Mathematical formulae
 - Code snippets
+
+## Separate admin and end user
+
+- Don't allow end user to access the create-post page

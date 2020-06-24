@@ -11,16 +11,26 @@ export default function HomePage() {
     <div className="reactWrapper">
       <CustomNavbar />
       <div className="content">
-        <h3>Home Page</h3>
-        <p>Welcome to my website.</p>
-        <p>Use the navigation bar to get around.</p>
-        <p>
-          If you wanna know more about me head over to the{" "}
+        <h4>Writings</h4>
+        <span>
+          I call them 'writings' or 'posts' because I am yet to accept the
+          reality that I have a blog. The latest article is below, but if you
+          want anything older then head over to the{" "}
+          <Link className="link" to="/posts">
+            posts
+          </Link>{" "}
+          page.
+        </span>
+        <p>---Put the latest article in here!---</p>
+        <h4>Who are you?</h4>
+        <span>
+          If you have an interest (as you should) to learn more about the
+          individuals behind the opinions you read, then head over to my{" "}
           <Link className="link" to="/about">
             about page
           </Link>
           .
-        </p>
+        </span>
       </div>
     </div>
   );

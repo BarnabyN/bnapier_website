@@ -1,20 +1,25 @@
 body {
-  margin: 20px;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: lighter;
+  font-size: 18px;
   padding: 10px;
+  max-width: 80%;
+  margin: 0 auto;
+  background-color: whitesmoke;
 }
 
 /* Things not in the navbar go in a content wrapper (for margins etc) */
 .content {
   margin: 20px;
-  margin-top: 65px;
+  margin-top: 110px;
+  line-height: 30px;
 }
 
 .link {
   text-decoration: none;
-  color: blue;
-  font-weight: bold;
+  color: black;
+  font-weight: normal;
+  background-color: rgba(211, 211, 211, 0.6);
 }
 
 .link:hover {
@@ -22,20 +27,37 @@ body {
   color: white;
 }
 
+input {
+  margin: 5px;
+  outline: none;
+  font-size: 14px;
+  font-family: inherit;
+  width: 60%;
+  height: 30px;
+  font: inherit;
+  text-align: left;
+}
 /* Use these headers to style CKeditor the same way as CKeditor */
 
 h2 {
-  text-decoration: underline black;
+  /* text-decoration: underline black; */
   font-weight: bold;
-  font-size: 22px;
+  font-size: 26px;
+  margin-bottom: 10px;
+  margin-top: 30px;
+  text-transform: uppercase;
 }
 
 h3 {
   text-decoration: underline;
   font-weight: normal;
-  font-size: 18px;
+  font-size: 22px;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 h4 {
   font-weight: bold;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }

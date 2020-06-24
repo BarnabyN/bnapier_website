@@ -38,9 +38,8 @@ export default function PostPage() {
     <div className="reactWrapper">
       <CustomNavbar />
       <div className="content">
-        {" "}
-        <h1>{post.title}</h1>
-        <br />
+        <h2>{post.title}</h2>
+        <hr />
         <div dangerouslySetInnerHTML={{ __html: post.content }} />
       </div>
     </div>

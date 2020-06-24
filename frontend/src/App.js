@@ -2,13 +2,12 @@ import React from "react";
 
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 
-import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import BooksPage from "./pages/BooksPage";
 import CreatePostPage from "./pages/CreatePostPage";
 import PostPage from "./pages/PostPage";
 import AllPostsPage from "./pages/AllPostsPage";
-import ProjectsPage from "./pages/ProjectsPage";
+import AdminLoginPage from "./pages/AdminLoginPage";
 
 export default function App() {
   return (
@@ -29,14 +28,11 @@ export default function App() {
         <Route path="/posts">
           <AllPostsPage />
         </Route>
-        <Route path="/projects">
-          <ProjectsPage />
+        <Route path="/admin-login">
+          <AdminLoginPage />
         </Route>
-        <Route exact path="/">
-          <HomePage />
-        </Route>
+        <Redirect from="*" to="/posts" />
       </Switch>
-      <Redirect from="*" to="/" />
     </BrowserRouter>
   );
 }

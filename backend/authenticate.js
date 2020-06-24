@@ -30,9 +30,6 @@ module.exports = {
       }
 
       req.user = decoded.userId;
-
-      console.log(decoded.userId);
-
       return next();
     });
   },

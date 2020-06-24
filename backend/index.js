@@ -11,6 +11,7 @@ const port = 5000; //process.env.PORT;
 // Imports
 const { requireAuth, createToken } = require("./authenticate");
 const PostModel = require("./models/PostModel");
+const AdminModel = require("./models/AdminModel");
 
 // Connect to mongobd
 const mongoose = require("mongoose");
@@ -60,7 +61,6 @@ app.get("/tags", async (req, res) => {
 app.get("/post/:id", async (req, res) => {
   const allposts = await PostModel.find({});
   const matchingPosts = allposts.filter((p) => p.id == req.params.id);
-  console.log(req.params.id);
   if (matchingPosts.length > 0) {
     res.send({ ...matchingPosts[0]._doc });
   } else {
@@ -68,12 +68,38 @@ app.get("/post/:id", async (req, res) => {
   }
 });
 
+app.post("/admin-login", async (req, res) => {
+  const { username, password } = req.body;
+  const matchingAdmin = await AdminModel.findOne({ username }).select(
+    "+password"
+  );
+  if (matchingAdmin && matchingAdmin.password == password) {
+    res.send({
+      success: true,
+      token: createToken(matchingAdmin.id),
+    });
+  } else {
+    res.send({ success: false, message: "invalid credentials" });
+  }
+});
+
+app.get("/get-current-admin", requireAuth, async (req, res) => {
+  const matchingAdmin = await AdminModel.findById(req.user);
+  if (matchingAdmin) {
+    const { id, name, username } = matchingAdmin;
+    return res.send({ id, name, username });
+  }
+  res.send(null);
+});
+
 app.post("/newpost", async (req, res) => {
-  const { title, subtitle, content, tags } = req.body;
+  const { title, subtitle, date, author, content, tags } = req.body;
   const id = title.replace(" ", "_");
   const newPost = new PostModel({
     title,
     subtitle,
+    date,
+    author,
     tags,
     content,
     id,

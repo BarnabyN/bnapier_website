@@ -16,7 +16,7 @@ export default function BookPage() {
           frameborder="0"
           scrolling="no"
           title="Reading List"
-          src="https://onedrive.live.com/embed?resid=AD0C145F677E2286%21109521&authkey=%21AO4dPWGGpWQfJlI&em=2&wdAllowInteractivity=False&Item=Table1&wdHideGridlines=True&wdDownloadButton=True&wdInConfigurator=True"
+          src="https://onedrive.live.com/embed?resid=AD0C145F677E2286%21109772&authkey=%21AOi2w4HwqYrbNIw&em=2&wdAllowInteractivity=False&Item=Table1&wdHideGridlines=True&wdDownloadButton=True&wdInConfigurator=True"
         ></iframe>
         <p>* Yes, I am that lazy</p>
       </div>

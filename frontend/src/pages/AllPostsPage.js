@@ -11,7 +11,6 @@ export default function AllPostsPage() {
   const [posts, setPosts] = React.useState([]);
   const [tag, setTag] = React.useState("All");
   const [tags, setTags] = React.useState([]);
-  const [filteredPosts, setFilteredPosts] = React.useState([]);
 
   React.useEffect(() => {
     fetch(dbstring + "/posts")
@@ -45,7 +44,7 @@ export default function AllPostsPage() {
               className="tagbutton"
               onClick={() => setTag(t)}
               style={{
-                borderColor: tag === t ? "black" : "white",
+                borderColor: tag === t ? "black" : "",
               }}
             >
               {t}
@@ -63,12 +62,16 @@ export default function AllPostsPage() {
           .map((p) => {
             return (
               <div className="div-postwrapper">
-                <span className="post-title">{p.title}</span>
-                <Link className="readmore link" to={`/post/${p.id}`}>
-                  ...
+                <Link className="post-title" to={`/post/${p.id}`}>
+                  {p.title}
                 </Link>
                 <span className="post-subtitle">{p.subtitle}</span>
-                <span className="post-tags">{p.tags.join(", ")}</span>
+                <div className="post-info">
+                  <span className="post-date">
+                    {p.date}&nbsp; &middot; &nbsp;
+                  </span>
+                  <span className="post-tags">{p.tags.join(", ")}</span>
+                </div>
               </div>
             );
           })}
