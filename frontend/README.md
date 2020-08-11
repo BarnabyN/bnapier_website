@@ -4,7 +4,7 @@ Programmed in React, the plan is to have a frontend site where the user can view
 
 # TODO
 
-## Add ckeditor5 functionality for:
+## Add functionality for:
 
 - Images
 - Mathematical formulae

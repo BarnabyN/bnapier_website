@@ -2,7 +2,7 @@ body {
   font-family: "Montserrat", sans-serif;
   font-weight: lighter;
   font-size: 18px;
-  padding: 10px;
+  padding-top: 100px;
   max-width: 80%;
   margin: 0 auto;
   background-color: whitesmoke;
@@ -11,7 +11,6 @@ body {
 /* Things not in the navbar go in a content wrapper (for margins etc) */
 .content {
   margin: 20px;
-  margin-top: 110px;
   line-height: 30px;
 }
 
