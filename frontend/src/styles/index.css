@@ -10,7 +10,9 @@ body {
 
 /* Things not in the navbar go in a content wrapper (for margins etc) */
 .content {
-  margin: 20px;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 5%;
   line-height: 30px;
 }
 
@@ -39,8 +41,7 @@ input {
 /* Use these headers to style CKeditor the same way as CKeditor */
 
 h2 {
-  /* text-decoration: underline black; */
-  font-weight: bold;
+  font-weight: normal;
   font-size: 26px;
   margin-bottom: 10px;
   margin-top: 30px;
@@ -48,7 +49,7 @@ h2 {
 }
 
 h3 {
-  text-decoration: underline;
+  /* text-decoration: underline; */
   font-weight: normal;
   font-size: 22px;
   margin-bottom: 10px;

@@ -1,14 +1,16 @@
 .navbar {
-  background-color: Black;
-  color: white;
+  background-color: whitesmoke;
+  color: Black;
   padding-top: 20px;
   padding-bottom: 20px;
   position: fixed;
-  border-radius: 10px;
+  border-radius: 0px;
   top: 0;
   font-size: 22px;
   width: 80%;
-  margin-top: 5px;
+  margin-top: 0px;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
 }
 
 .navbrand {
