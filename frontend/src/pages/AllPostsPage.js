@@ -72,6 +72,7 @@ export default function AllPostsPage() {
                   </span>
                   <span className="post-tags">{p.tags.join(", ")}</span>
                 </div>
+                <div dangerouslySetInnerHTML={{ __html: p.content }} />
               </div>
             );
           })}
