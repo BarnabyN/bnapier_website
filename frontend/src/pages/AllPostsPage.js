@@ -44,7 +44,8 @@ export default function AllPostsPage() {
               className="tagbutton"
               onClick={() => setTag(t)}
               style={{
-                borderColor: tag === t ? "black" : "",
+                // borderColor: tag === t ? "black" : "",
+                backgroundColor: tag === t ? "lightgray" : "",
               }}
             >
               {t}
